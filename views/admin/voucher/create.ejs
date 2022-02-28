@@ -1,0 +1,105 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/navbar.ejs %>
+<%- include ../../partials/sidebar.ejs %>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Voucher</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/voucher">Voucher</a></li>
+              <li class="breadcrumb-item active">Tambah</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Tambah Voucher</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form action="/voucher/create" method="POST" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="name">Nama Game</label>
+                        <input type="text" class="form-control" id="name" placeholder="Masukkan Nama Game" name="name">
+                      </div>
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select class="form-control select2" style="width: 100%;" name="category">
+                          <% category.forEach(category => { %>
+                            <option value="<%= category._id %>">
+                              <%= category.name %>
+                            </option>
+                          <% }) %>
+                        </select>
+                    </div>
+                    <div class="select2-purple">
+                        <div class="form-group">
+                            <label>Nominal</label>
+                            <select class="form-control select2" multiple="multiple" style="width: 100%;" name="nominals" data-placeholder="Pilih Nominal">
+                              <% nominal.forEach(nominal => { %>
+                                <option value="<%= nominal._id %>"><%= nominal.coinName %> <%= nominal.coinQuantity %>
+                                </option>
+                              <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                  <div class="form-group">
+                    <label for="image">Harga</label>
+                    <input type="file" class="form-control" id="image" placeholder="Masukkan Harga" name="image">
+                    <br>
+                    <img src="" alt="" id="preview">
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+<%- include ../../partials/footer.ejs %>
+<%- include ../../partials/js.ejs %>
+
+<script>
+  const fileEle = document.getElementById('image')
+  const previewEle = document.getElementById('preview')
+
+  fileEle.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+
+    const url = URL.createObjectURL(file);
+
+    previewEle.src = url;
+    document.getElementById('preview').setAttribute('width', '20%');
+    document.getElementById('preview').setAttribute('height', '20%');
+  })
+</script>
