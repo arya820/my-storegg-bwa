@@ -32,10 +32,11 @@ module.exports = {
             .populate('nominals')
             .populate('user', '_id name phoneNumber')       // ambil id name dan phone number dari model users
 
+            const payment = await Payment.find().populate('banks')
             if (!voucher) {
                 return res.status(404).json({message: 'Data voucher tidak ditemukan'})
             }
-            res.status(200).json({data: voucher})
+            res.status(200).json({data: {voucher, payment}})
         } catch (error) {
             res.status(500).json({message: error.message || 'Terjadi kesalahan pada server'})
         }
