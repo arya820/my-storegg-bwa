@@ -4,7 +4,6 @@ my-storegg-bwa is a CRUD and API for Gaming Voucher Web Server. my-storegg-bwa c
 
 This project is from [buildwithangga.com](https://buildwithangga.com/) course
 
-
 ## Technologies
 my-storegg-bwa use technologies such as:
 - NodeJS
@@ -12,21 +11,6 @@ my-storegg-bwa use technologies such as:
 - EJS
 - AdminLTE dashboard Template
 - MongoDB
-
-## Installation
-```bash
-git clone https://github.com/arya820/my-storegg-bwa.git
-cd my-storegg-bwa
-npm install
-```
-
-Run the application
-```bash
-npm run start
-
-# or
-npm run dev
-```
 
 ##  Preview
 ![PreviewImage](/public/preview.png)
